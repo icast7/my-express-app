@@ -16,17 +16,17 @@ app.get((req, res, next) => {
     })
 });
 
-app.use((req, res, next) => {
-	if (req.method === 'GET' && req.url === '/') {
-		res.send('hello world');
-	} else {
-		next();
-    }
-});
-
-app.use((req, res, next) => {
-	res.send('finally something other than GET /')
-});
+// app.use((req, res, next) => {
+// 	if (req.method === 'GET' && req.url === '/') {
+// 		res.send('hello world');
+// 	} else {
+// 		next();
+//     }
+// });
+//
+// app.use((req, res, next) => {
+// 	res.send('finally something other than GET /')
+// });
 
 const port = 8082;
 app.listen(port, () => console.log('running on port', port));

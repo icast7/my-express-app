@@ -17,16 +17,18 @@ module.exports = {
     get( id, cb ) {
         const pet = find( id );
         process.nextTick( () => {
-            if ( pet ) cb( null, pet );
-    else cb( `id ${id} does not exist` );
-    })
+            if ( pet )
+                cb( null, pet );
+            else
+                cb( 'id ${id} does not exist' );
+        })
     },
     getAll( cb ) {
-        process.nextTick( () => cb( null, pets ) );
+        process.nextTick( () => cb( null, pets ));
     },
     getCount( cb ) {
         const count = pets.length
-        process.nextTick( () => cb( null, count ) );
+        process.nextTick( () => cb( null, count ));
     },
     add( pet, cb ) {
         pet.id = i++;

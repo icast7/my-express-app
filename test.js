@@ -12,7 +12,8 @@ const bodyParser = function(req, res, next) {
 };
 
 function checkAuth(req, res, next) {
-    if (req.query.token && req.query.token === 'sekrit') {
+    const token = req.get('Authorization')
+    if (token && token === 'sekrit') {
         next();
     }
     else {

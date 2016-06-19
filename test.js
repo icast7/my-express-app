@@ -5,28 +5,23 @@ app.use((req, res, next) => {
 	next();
 });
 
-app.get((req, res, next) => {
-    let body = '';
-    req.on('data', chunk => {
-        body += chunk;
+app.use((req, res, next) => {
+    console.log(req.param('test'));
+    var query = req.param('test');
+    var body = '';
+    req.on('req.query', chunk => {
+        query += chunk;
     });
     req.on('end', () => {
-        req.body = body ? JSON.parse(body) : null;
+        req.body = query ? JSON.parse(query) : null;
         next();
     })
 });
 
-// app.use((req, res, next) => {
-// 	if (req.method === 'GET' && req.url === '/') {
-// 		res.send('hello world');
-// 	} else {
-// 		next();
-//     }
-// });
+// app.get('/', ()) {
 //
-// app.use((req, res, next) => {
-// 	res.send('finally something other than GET /')
-// });
+// }
+
 
 const port = 8082;
 app.listen(port, () => console.log('running on port', port));

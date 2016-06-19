@@ -5,9 +5,16 @@ app.use((req, res, next) => {
 	next();
 });
 
-app.get('/', (req, res) => {
-    res.send('test');
-})
+app.get((req, res, next) => {
+    let body = '';
+    req.on('data', chunk => {
+        body += chunk;
+    });
+    req.on('end', () => {
+        req.body = body ? JSON.parse(body) : null;
+        next();
+    })
+});
 
 app.use((req, res, next) => {
 	if (req.method === 'GET' && req.url === '/') {

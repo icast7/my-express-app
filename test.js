@@ -1,15 +1,5 @@
 const app = require('express')();
-
-const bodyParser = function(req, res, next) {
-    let body ='';
-    req.on('data', chunk => {
-        body += chunk;
-    });
-    req.on('end', () => {
-        req.body = body ? JSON.parse(body) : null;
-        next();
-    });
-};
+const bodyParser = require('./bodyparser')();
 
 function checkAuth(req, res, next) {
     const token = req.get('Authorization')
